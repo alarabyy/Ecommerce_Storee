@@ -1,0 +1,136 @@
+﻿@model ECommerce.Models.Products.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    h1 {
+        color: #343a40; /* Dark gray */
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border: 2px solid #007bff; /* Blue border */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #0056b3; /* Darker blue on focus */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn-primary {
+        background-color: #28a745; /* Green */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #495057; /* Medium gray */
+    }
+
+    .text-danger {
+        font-weight: bold;
+    }
+
+    .form-check-label {
+        color: #495057; /* Medium gray */
+    }
+
+    .card {
+        background-color: #ffffff; /* White background for the form */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="container my-5">
+    <div class="card">
+        <h1>Create Product</h1>
+        <h4>Product Details</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="QuantityInStock" class="control-label"></label>
+                        <input asp-for="QuantityInStock" class="form-control" />
+                        <span asp-validation-for="QuantityInStock" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label">Category</label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VendorId" class="control-label">Vendor</label>
+                        <select asp-for="VendorId" class="form-control" asp-items="ViewBag.Vendors"></select>
+                        <span asp-validation-for="VendorId" class="text-danger"></span>
+                    </div>
+
+                    <!-- New image upload section -->
+                    <div class="form-group">
+                        <label>Upload Product Image(s)</label>
+                        <input type="file" name="images" class="form-control" multiple />
+                        <small class="form-text text-muted">You can upload multiple images for this product.</small>
+                    </div>
+                    <!-- End of image upload section -->
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-link">Back to List</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

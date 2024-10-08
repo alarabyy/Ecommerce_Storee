@@ -1,0 +1,31 @@
+﻿@model ECommerce.Models.Vendors.Vendor
+
+@{
+    ViewData["Title"] = "Vendor Details";
+}
+
+<h1 class="text-center my-4">Vendor Details</h1>
+
+<div class="container">
+    <h4 class="text-primary">Vendor Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<div class="text-center my-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-lg">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary btn-lg ml-3">Back to List</a>
+</div>
